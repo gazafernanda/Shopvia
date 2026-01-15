@@ -5,22 +5,22 @@ import Image from 'next/image';
 const styles = [
     {
         name: 'Casual',
-        image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=2000&auto=format&fit=crop',
+        image: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=2070&auto=format&fit=crop',
         col: { xs: 12, md: 4 }
     },
     {
         name: 'Formal',
-        image: 'https://images.unsplash.com/photo-1594938298603-c8148c47e356?q=80&w=2000&auto=format&fit=crop',
+        image: 'https://images.unsplash.com/photo-1617127365659-c47fa864d8bc?q=80&w=1974&auto=format&fit=crop',
         col: { xs: 12, md: 8 }
     },
     {
         name: 'Party',
-        image: 'https://images.unsplash.com/photo-1566737236500-c8ac43014a67?q=80&w=2000&auto=format&fit=crop',
+        image: 'https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?q=80&w=1965&auto=format&fit=crop',
         col: { xs: 12, md: 8 }
     },
     {
         name: 'Gym',
-        image: 'https://images.unsplash.com/photo-1483721310020-03333e577078?q=80&w=2000&auto=format&fit=crop',
+        image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop',
         col: { xs: 12, md: 4 }
     },
 ];
@@ -53,7 +53,7 @@ export default function DressStyleGrid() {
 
                 <Grid container spacing={3}>
                     {styles.map((style) => (
-                        <Grid item key={style.name} xs={style.col.xs} md={style.col.md}>
+                        <Grid key={style.name} size={{ xs: style.col.xs, md: style.col.md }}>
                             <Paper
                                 elevation={0}
                                 sx={{

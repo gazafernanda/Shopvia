@@ -10,7 +10,8 @@ import {
     Badge,
     Container,
     Stack,
-    Link
+    Link as MuiLink,
+    Drawer
 } from '@mui/material';
 import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
@@ -18,6 +19,7 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import Link from 'next/link';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -58,6 +60,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Navbar() {
+    const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+
     return (
         <AppBar position="sticky" elevation={0} sx={{ bgcolor: 'white', color: 'text.primary', borderBottom: '1px solid', borderColor: '#f0f0f0', py: 0.5, top: 0, zIndex: 1100 }}>
             <Container maxWidth="lg">
@@ -68,33 +72,69 @@ export default function Navbar() {
                         color="inherit"
                         aria-label="menu"
                         sx={{ display: { md: 'none' } }}
+                        onClick={() => setMobileMenuOpen(true)}
                     >
                         <MenuIcon />
                     </IconButton>
 
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        sx={{
-                            fontWeight: 900,
-                            fontSize: { xs: '1.2rem', md: '1.8rem' },
-                            color: 'black',
-                            cursor: 'pointer',
-                            fontFamily: 'var(--font-integral)',
-                            mr: { md: 2 }
-                        }}
+                    <Drawer
+                        anchor="left"
+                        open={mobileMenuOpen}
+                        onClose={() => setMobileMenuOpen(false)}
+                        PaperProps={{ sx: { width: 280 } }}
                     >
-                        Shopvia
-                    </Typography>
+                        <Box sx={{ p: 2 }}>
+                            <Typography variant="h6" sx={{ mb: 3, fontWeight: 900, fontFamily: 'var(--font-integral)' }}>Shopvia</Typography>
+                            <Stack spacing={2}>
+                                {[
+                                    { label: 'Shop', href: '/shop' },
+                                    { label: 'On Sale', href: '/on-sale' },
+                                    { label: 'New Arrivals', href: '/new-arrivals' },
+                                    { label: 'Brands', href: '/brands' }
+                                ].map((item) => (
+                                    <Link key={item.label} href={item.href} style={{ textDecoration: 'none', color: 'black' }} onClick={() => setMobileMenuOpen(false)}>
+                                        <Typography sx={{ fontSize: '1.1rem', fontWeight: 500 }}>{item.label}</Typography>
+                                    </Link>
+                                ))}
+                            </Stack>
+                        </Box>
+                    </Drawer>
+
+                    <Link href="/" style={{ textDecoration: 'none' }}>
+                        <Typography
+                            variant="h6"
+                            noWrap
+                            component="div"
+                            sx={{
+                                fontWeight: 900,
+                                fontSize: { xs: '1.2rem', md: '1.8rem' },
+                                color: 'black',
+                                cursor: 'pointer',
+                                fontFamily: 'var(--font-integral)',
+                                mr: { md: 2 }
+                            }}
+                        >
+                            Shopvia
+                        </Typography>
+                    </Link>
+
+                    <Box sx={{ flexGrow: { xs: 1, md: 0 } }} />
 
                     <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: 3, flexShrink: 0 }}>
-                        <Link href="#" color="inherit" underline="none" sx={{ display: 'flex', alignItems: 'center', gap: 0.5, fontSize: '1rem' }}>
-                            Shop <KeyboardArrowDownIcon sx={{ fontSize: '1rem' }} />
+                        <Link href="/shop" style={{ textDecoration: 'none' }}>
+                            <MuiLink component="span" color="inherit" underline="none" sx={{ display: 'flex', alignItems: 'center', gap: 0.5, fontSize: '1rem', cursor: 'pointer' }}>
+                                Shop <KeyboardArrowDownIcon sx={{ fontSize: '1rem' }} />
+                            </MuiLink>
                         </Link>
-                        <Link href="#" color="inherit" underline="none" sx={{ fontSize: '1rem' }}>On Sale</Link>
-                        <Link href="#" color="inherit" underline="none" sx={{ fontSize: '1rem' }}>New Arrivals</Link>
-                        <Link href="#" color="inherit" underline="none" sx={{ fontSize: '1rem' }}>Brands</Link>
+                        <Link href="/on-sale" style={{ textDecoration: 'none' }}>
+                            <MuiLink component="span" color="inherit" underline="none" sx={{ fontSize: '1rem', cursor: 'pointer' }}>On Sale</MuiLink>
+                        </Link>
+                        <Link href="/new-arrivals" style={{ textDecoration: 'none' }}>
+                            <MuiLink component="span" color="inherit" underline="none" sx={{ fontSize: '1rem', cursor: 'pointer' }}>New Arrivals</MuiLink>
+                        </Link>
+                        <Link href="/brands" style={{ textDecoration: 'none' }}>
+                            <MuiLink component="span" color="inherit" underline="none" sx={{ fontSize: '1rem', cursor: 'pointer' }}>Brands</MuiLink>
+                        </Link>
                     </Box>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'block' }, mx: 2 }}>
@@ -113,17 +153,22 @@ export default function Navbar() {
                         <IconButton size="large" color="inherit" sx={{ display: { xs: 'flex', md: 'none' } }}>
                             <SearchIcon />
                         </IconButton>
-                        <IconButton size="large" color="inherit">
-                            <Badge badgeContent={2} color="primary" sx={{ '& .MuiBadge-badge': { bgcolor: 'black', color: 'white' } }}>
-                                <ShoppingCartOutlinedIcon />
-                            </Badge>
-                        </IconButton>
-                        <IconButton size="large" edge="end" color="inherit">
-                            <AccountCircleOutlinedIcon />
-                        </IconButton>
+                        <Link href="/cart">
+                            <IconButton size="large" color="inherit">
+                                <Badge badgeContent={2} color="primary" sx={{ '& .MuiBadge-badge': { bgcolor: 'black', color: 'white' } }}>
+                                    <ShoppingCartOutlinedIcon />
+                                </Badge>
+                            </IconButton>
+                        </Link>
+                        <Link href="/account">
+                            <IconButton size="large" edge="end" color="inherit">
+                                <AccountCircleOutlinedIcon />
+                            </IconButton>
+                        </Link>
                     </Stack>
                 </Toolbar>
             </Container>
         </AppBar>
     );
 }
+

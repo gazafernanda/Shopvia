@@ -15,7 +15,7 @@ export default function Footer() {
                 <Box
                     sx={{
                         bgcolor: 'black',
-                        borderRadius: 8,
+                        borderRadius: '20px',
                         px: { xs: 3, sm: 6, md: 8 },
                         py: { xs: 4, md: 6 },
                         display: 'flex',
@@ -25,7 +25,7 @@ export default function Footer() {
                         gap: { xs: 4, md: 10 }
                     }}
                 >
-                    <Typography variant="h2" sx={{ color: 'white', maxWidth: '550px', fontSize: { xs: '2rem', md: '2.5rem' }, textAlign: { xs: 'center', md: 'left' }, fontFamily: 'var(--font-integral)', fontWeight: 900 }}>
+                    <Typography variant="h2" sx={{ color: 'white', maxWidth: '550px', fontSize: { xs: '1.75rem', sm: '2.25rem', md: '2.5rem' }, textAlign: { xs: 'center', md: 'left' }, fontFamily: 'var(--font-integral)', fontWeight: 900 }}>
                         STAY UP TO DATE ABOUT OUR LATEST OFFERS
                     </Typography>
                     <Stack spacing={2} sx={{ width: { xs: '100%', sm: '350px' } }}>
@@ -73,7 +73,7 @@ export default function Footer() {
             <Box sx={{ bgcolor: '#F0F0F0', pt: { xs: 35, sm: 30, md: 25 }, pb: 8 }}>
                 <Container maxWidth="lg">
                     <Grid container spacing={4} sx={{ mb: 8 }}>
-                        <Grid item xs={12} md={3}>
+                        <Grid size={{ xs: 12, md: 3 }}>
                             <Typography variant="h4" sx={{ fontWeight: 900, fontFamily: 'var(--font-integral)', mb: 3 }}>
                                 Shopvia
                             </Typography>
@@ -88,7 +88,7 @@ export default function Footer() {
                             </Stack>
                         </Grid>
 
-                        <Grid item xs={6} md={2}>
+                        <Grid size={{ xs: 6, md: 2 }}>
                             <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 3, letterSpacing: 1 }}>COMPANY</Typography>
                             <Stack spacing={1.5}>
                                 <Link href="#" color="text.secondary" underline="none" sx={{ fontSize: '0.9rem' }}>About</Link>
@@ -98,7 +98,7 @@ export default function Footer() {
                             </Stack>
                         </Grid>
 
-                        <Grid item xs={6} md={2}>
+                        <Grid size={{ xs: 6, md: 2 }}>
                             <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 3, letterSpacing: 1 }}>HELP</Typography>
                             <Stack spacing={1.5}>
                                 <Link href="#" color="text.secondary" underline="none" sx={{ fontSize: '0.9rem' }}>Customer Support</Link>
@@ -108,7 +108,7 @@ export default function Footer() {
                             </Stack>
                         </Grid>
 
-                        <Grid item xs={6} md={2}>
+                        <Grid size={{ xs: 6, md: 2 }}>
                             <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 3, letterSpacing: 1 }}>FAQ</Typography>
                             <Stack spacing={1.5}>
                                 <Link href="#" color="text.secondary" underline="none" sx={{ fontSize: '0.9rem' }}>Account</Link>
@@ -118,7 +118,7 @@ export default function Footer() {
                             </Stack>
                         </Grid>
 
-                        <Grid item xs={6} md={2}>
+                        <Grid size={{ xs: 6, md: 2 }}>
                             <Typography variant="subtitle1" sx={{ fontWeight: 700, mb: 3, letterSpacing: 1 }}>RESOURCES</Typography>
                             <Stack spacing={1.5}>
                                 <Link href="#" color="text.secondary" underline="none" sx={{ fontSize: '0.9rem' }}>Free eBooks</Link>

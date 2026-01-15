@@ -18,7 +18,7 @@ export default function Hero() {
         >
             <Container maxWidth="lg">
                 <Grid container alignItems="center">
-                    <Grid item xs={12} md={6} sx={{ pt: { md: 8 }, pb: { xs: 4, md: 8 } }}>
+                    <Grid size={{ xs: 12, md: 6 }} sx={{ pt: { md: 8 }, pb: { xs: 4, md: 8 } }}>
                         <Typography variant="h1" sx={{ fontSize: { xs: '2rem', sm: '3rem', md: '4rem' }, lineHeight: 1, mb: 3 }}>
                             FIND CLOTHES<br />THAT MATCH<br />YOUR STYLE
                         </Typography>
@@ -41,22 +41,22 @@ export default function Hero() {
                             Shop Now
                         </Button>
 
-                        <Grid container spacing={4} sx={{ mt: 2 }}>
-                            <Grid item xs={6} sm={4}>
+                        <Grid container spacing={{ xs: 2, sm: 4 }} sx={{ mt: 2 }}>
+                            <Grid size={{ xs: 6, sm: 4 }}>
                                 <Typography variant="h4" sx={{ fontWeight: 700, fontSize: { xs: '1.5rem', md: '2.5rem' } }}>200+</Typography>
                                 <Typography variant="body2" color="text.secondary">International Brands</Typography>
                             </Grid>
-                            <Grid item xs={6} sm={4}>
+                            <Grid size={{ xs: 6, sm: 4 }}>
                                 <Typography variant="h4" sx={{ fontWeight: 700, fontSize: { xs: '1.5rem', md: '2.5rem' } }}>2,000+</Typography>
                                 <Typography variant="body2" color="text.secondary">High-Quality Products</Typography>
                             </Grid>
-                            <Grid item xs={12} sm={4}>
+                            <Grid size={{ xs: 12, sm: 4 }}>
                                 <Typography variant="h4" sx={{ fontWeight: 700, fontSize: { xs: '1.5rem', md: '2.5rem' } }}>30,000+</Typography>
                                 <Typography variant="body2" color="text.secondary">Happy Customers</Typography>
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid item xs={12} md={6} sx={{
+                    <Grid size={{ xs: 12, md: 6 }} sx={{
                         position: 'relative',
                         height: { xs: '400px', sm: '500px', md: '660px' },
                         display: 'flex',
