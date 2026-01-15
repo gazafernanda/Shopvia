@@ -1,52 +1,63 @@
 'use client';
 import * as React from 'react';
-import { Box, Typography, Button, Container, Stack } from '@mui/material';
+import { Box, Typography, Button, Container, Grid, Stack } from '@mui/material';
 import Image from 'next/image';
 
 export default function Hero() {
     return (
-        <Box sx={{ position: 'relative', height: '600px', width: '100%', overflow: 'hidden' }}>
-            <Image
-                src="/hero.png"
-                alt="Hero Banner"
-                fill
-                style={{ objectFit: 'cover' }}
-                priority
-            />
-            <Box
-                sx={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    background: 'linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%)',
-                    display: 'flex',
-                    alignItems: 'center',
-                }}
-            >
-                <Container maxWidth="lg">
-                    <Box sx={{ maxWidth: '600px', color: 'white' }}>
-                        <Typography variant="overline" sx={{ letterSpacing: 2, fontWeight: 700 }}>
-                            NEW COLLECTION 2026
+        <Box sx={{ bgcolor: '#F2F0F1', pt: { xs: 4, md: 0 }, overflow: 'hidden' }}>
+            <Container maxWidth="lg">
+                <Grid container alignItems="center">
+                    <Grid item xs={12} md={6} sx={{ pt: { md: 8 }, pb: { xs: 4, md: 8 } }}>
+                        <Typography variant="h1" sx={{ fontSize: { xs: '2rem', sm: '3rem', md: '4rem' }, lineHeight: 1, mb: 3 }}>
+                            FIND CLOTHES<br />THAT MATCH<br />YOUR STYLE
                         </Typography>
-                        <Typography variant="h1" sx={{ fontSize: { xs: '3rem', md: '4.5rem' }, fontWeight: 800, mb: 2, lineHeight: 1.1 }}>
-                            Elevate Your Living Space
+                        <Typography variant="body1" color="text.secondary" sx={{ mb: 4, maxWidth: '540px', fontSize: '1rem' }}>
+                            Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.
                         </Typography>
-                        <Typography variant="h6" sx={{ mb: 4, opacity: 0.9, fontWeight: 400 }}>
-                            Discover our curated selection of modern furniture and premium electronics designed for the sophisticated home.
-                        </Typography>
-                        <Stack direction="row" spacing={2}>
-                            <Button variant="contained" size="large" sx={{ py: 1.5, px: 4, borderRadius: 0, fontWeight: 700 }}>
-                                Shop Now
-                            </Button>
-                            <Button variant="outlined" size="large" sx={{ py: 1.5, px: 4, borderRadius: 0, fontWeight: 700, color: 'white', borderColor: 'white', '&:hover': { borderColor: 'white', bgcolor: 'rgba(255,255,255,0.1)' } }}>
-                                View Collection
-                            </Button>
-                        </Stack>
-                    </Box>
-                </Container>
-            </Box>
+                        <Button
+                            variant="contained"
+                            size="large"
+                            sx={{
+                                bgcolor: 'black',
+                                color: 'white',
+                                px: 8,
+                                py: 2,
+                                mb: 6,
+                                width: { xs: '100%', sm: 'auto' },
+                                '&:hover': { bgcolor: 'rgba(0,0,0,0.8)' }
+                            }}
+                        >
+                            Shop Now
+                        </Button>
+
+                        <Grid container spacing={4} sx={{ mt: 2 }}>
+                            <Grid item xs={6} sm={4}>
+                                <Typography variant="h4" sx={{ fontWeight: 700, fontSize: { xs: '1.5rem', md: '2.5rem' } }}>200+</Typography>
+                                <Typography variant="body2" color="text.secondary">International Brands</Typography>
+                            </Grid>
+                            <Grid item xs={6} sm={4}>
+                                <Typography variant="h4" sx={{ fontWeight: 700, fontSize: { xs: '1.5rem', md: '2.5rem' } }}>2,000+</Typography>
+                                <Typography variant="body2" color="text.secondary">High-Quality Products</Typography>
+                            </Grid>
+                            <Grid item xs={12} sm={4}>
+                                <Typography variant="h4" sx={{ fontWeight: 700, fontSize: { xs: '1.5rem', md: '2.5rem' } }}>30,000+</Typography>
+                                <Typography variant="body2" color="text.secondary">Happy Customers</Typography>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid item xs={12} md={6} sx={{ position: 'relative', height: { xs: '450px', md: '660px' }, mt: { xs: 2, md: 0 } }}>
+                        <Image
+                            src="/hero_models.png"
+                            alt="Models wearing Shopvia clothes"
+                            fill
+                            style={{ objectFit: 'cover', objectPosition: 'top' }}
+                            priority
+                        />
+                        {/* Small stars decorations can be added here as icons if needed */}
+                    </Grid>
+                </Grid>
+            </Container>
         </Box>
     );
 }

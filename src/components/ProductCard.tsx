@@ -1,32 +1,43 @@
 'use client';
 import * as React from 'react';
-import { Card, CardContent, CardMedia, Typography, Box, Button, Rating, IconButton } from '@mui/material';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { Card, CardContent, CardMedia, Typography, Box, Rating, Stack } from '@mui/material';
+import StarIcon from '@mui/icons-material/Star';
 
 interface ProductCardProps {
     id: number;
     name: string;
     price: number;
     image: string;
-    category: string;
     rating: number;
+    originalPrice?: number;
+    discount?: string;
 }
 
-export default function ProductCard({ name, price, image, category, rating }: ProductCardProps) {
+export default function ProductCard({ name, price, image, rating, originalPrice, discount }: ProductCardProps) {
     return (
         <Card
             elevation={0}
             sx={{
-                maxWidth: 345,
-                borderRadius: 0,
-                position: 'relative',
-                '&:hover .product-actions': { opacity: 1 },
-                border: '1px solid',
-                borderColor: 'divider'
+                width: '100%',
+                bgcolor: 'transparent',
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100%',
+                '&:hover .product-image-container img': { transform: 'scale(1.05)' },
             }}
         >
-            <Box sx={{ position: 'relative', pt: '120%', overflow: 'hidden' }}>
+            {/* Rectangular Rounded Image Container */}
+            <Box
+                className="product-image-container"
+                sx={{
+                    position: 'relative',
+                    width: '100%',
+                    paddingTop: '100%', // 1:1 Aspect Ratio
+                    overflow: 'hidden',
+                    borderRadius: '20px',
+                    bgcolor: '#F0EEED'
+                }}
+            >
                 <CardMedia
                     component="img"
                     image={image}
@@ -38,55 +49,57 @@ export default function ProductCard({ name, price, image, category, rating }: Pr
                         width: '100%',
                         height: '100%',
                         transition: 'transform 0.3s ease-in-out',
-                        '&:hover': {
-                            transform: 'scale(1.05)',
-                        },
+                        objectFit: 'cover',
                     }}
                 />
-                <Box
-                    className="product-actions"
+            </Box>
+
+            <CardContent sx={{ px: 0, pt: 2, pb: 0, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+                <Typography
+                    variant="subtitle1"
                     sx={{
-                        position: 'absolute',
-                        bottom: 10,
-                        left: '50%',
-                        transform: 'translateX(-50%)',
-                        display: 'flex',
-                        gap: 1,
-                        opacity: 0,
-                        transition: 'opacity 0.3s ease-in-out',
-                        width: '90%'
+                        fontWeight: 700,
+                        mb: 0.5,
+                        fontSize: { xs: '0.9rem', md: '1.2rem' },
+                        fontFamily: 'var(--font-satoshi)',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        whiteSpace: 'nowrap'
                     }}
                 >
-                    <Button
-                        variant="contained"
-                        fullWidth
-                        startIcon={<AddShoppingCartIcon />}
-                        sx={{ borderRadius: 0, bgcolor: 'common.black', '&:hover': { bgcolor: 'grey.900' } }}
-                    >
-                        Add
-                    </Button>
-                    <IconButton sx={{ bgcolor: 'white', borderRadius: 0, border: '1px solid', borderColor: 'divider', '&:hover': { bgcolor: 'grey.100' } }}>
-                        <FavoriteBorderIcon fontSize="small" />
-                    </IconButton>
-                </Box>
-            </Box>
-            <CardContent sx={{ pt: 2, pb: '16px !important' }}>
-                <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600, textTransform: 'uppercase' }}>
-                    {category}
-                </Typography>
-                <Typography variant="subtitle1" component="div" sx={{ fontWeight: 700, mt: 0.5, mb: 1, lineHeight: 1.2 }}>
                     {name}
                 </Typography>
+
                 <Stack direction="row" alignItems="center" spacing={1} mb={1}>
-                    <Rating value={rating} precision={0.5} size="small" readOnly />
-                    <Typography variant="caption" color="text.secondary">(4.5)</Typography>
+                    <Rating
+                        value={rating}
+                        precision={0.5}
+                        size="small"
+                        readOnly
+                        icon={<StarIcon sx={{ color: '#FFC633' }} fontSize="inherit" />}
+                        emptyIcon={<StarIcon sx={{ color: '#e0e0e0' }} fontSize="inherit" />}
+                    />
+                    <Typography variant="body2" sx={{ fontWeight: 400, fontSize: '0.875rem' }}>
+                        {rating}/<Box component="span" sx={{ color: 'rgba(0,0,0,0.4)' }}>5</Box>
+                    </Typography>
                 </Stack>
-                <Typography variant="h6" color="primary" sx={{ fontWeight: 800 }}>
-                    ${price.toFixed(2)}
-                </Typography>
+
+                <Stack direction="row" alignItems="center" spacing={1.5} sx={{ mt: 'auto', pt: 1 }}>
+                    <Typography variant="h6" sx={{ fontWeight: 700, fontSize: { xs: '1.2rem', md: '1.5rem' } }}>
+                        ${price}
+                    </Typography>
+                    {originalPrice && (
+                        <Typography variant="h6" sx={{ fontWeight: 700, fontSize: { xs: '1.2rem', md: '1.5rem' }, color: 'rgba(0,0,0,0.4)', textDecoration: 'line-through' }}>
+                            ${originalPrice}
+                        </Typography>
+                    )}
+                    {discount && (
+                        <Box sx={{ bgcolor: 'rgba(255, 51, 51, 0.1)', color: '#FF3333', px: 1.5, py: 0.5, borderRadius: 10, fontSize: '0.75rem', fontWeight: 500 }}>
+                            {discount}
+                        </Box>
+                    )}
+                </Stack>
             </CardContent>
         </Card>
     );
 }
-
-import { Stack } from '@mui/material';

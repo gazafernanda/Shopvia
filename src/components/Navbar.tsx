@@ -8,30 +8,29 @@ import {
     Typography,
     InputBase,
     Badge,
-    MenuItem,
-    Menu,
     Container,
-    Button
+    Stack,
+    Link
 } from '@mui/material';
 import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import MoreIcon from '@mui/icons-material/MoreVert';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import MenuIcon from '@mui/icons-material/Menu';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    borderRadius: 62,
+    backgroundColor: '#f0f0f0',
     '&:hover': {
-        backgroundColor: alpha(theme.palette.common.white, 0.25),
+        backgroundColor: alpha('#f0f0f0', 0.8),
     },
-    marginRight: theme.spacing(2),
+    marginRight: 0,
     marginLeft: 0,
     width: '100%',
-    [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(3),
-        width: 'auto',
+    [theme.breakpoints.up('md')]: {
+        width: '100%',
     },
 }));
 
@@ -43,170 +42,88 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    color: 'rgba(0, 0, 0, 0.4)',
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: 'inherit',
+    width: '100%',
     '& .MuiInputBase-input': {
-        padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
+        padding: theme.spacing(1.2, 1, 1.2, 0),
         paddingLeft: `calc(1em + ${theme.spacing(4)})`,
         transition: theme.transitions.create('width'),
         width: '100%',
-        [theme.breakpoints.up('md')]: {
-            width: '20ch',
-        },
+        fontSize: '0.9rem',
     },
 }));
 
 export default function Navbar() {
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
-
-    const isMenuOpen = Boolean(anchorEl);
-    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-    const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleMobileMenuClose = () => {
-        setMobileMoreAnchorEl(null);
-    };
-
-    const handleMenuClose = () => {
-        setAnchorEl(null);
-        handleMobileMenuClose();
-    };
-
-    const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-        setMobileMoreAnchorEl(event.currentTarget);
-    };
-
-    const menuId = 'primary-search-account-menu';
-    const renderMenu = (
-        <Menu
-            anchorEl={anchorEl}
-            anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            id={menuId}
-            keepMounted
-            transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            open={isMenuOpen}
-            onClose={handleMenuClose}
-        >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-        </Menu>
-    );
-
-    const mobileMenuId = 'primary-search-account-menu-mobile';
-    const renderMobileMenu = (
-        <Menu
-            anchorEl={mobileMoreAnchorEl}
-            anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            id={mobileMenuId}
-            keepMounted
-            transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            open={isMobileMenuOpen}
-            onClose={handleMobileMenuClose}
-        >
-            <MenuItem>
-                <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                    <Badge badgeContent={4} color="error">
-                        <ShoppingCartIcon />
-                    </Badge>
-                </IconButton>
-                <p>Cart</p>
-            </MenuItem>
-            <MenuItem onClick={handleProfileMenuOpen}>
-                <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="primary-search-account-menu"
-                    aria-haspopup="true"
-                    color="inherit"
-                >
-                    <AccountCircle />
-                </IconButton>
-                <p>Profile</p>
-            </MenuItem>
-        </Menu>
-    );
-
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static" elevation={0} sx={{ bgcolor: 'white', color: 'text.primary', borderBottom: '1px solid', borderColor: 'divider' }}>
-                <Container maxWidth="lg">
-                    <Toolbar disableGutters>
-                        <Typography
-                            variant="h6"
-                            noWrap
-                            component="div"
-                            sx={{ display: { xs: 'none', sm: 'block' }, fontWeight: 700, letterSpacing: '.1rem', color: 'primary.main', cursor: 'pointer' }}
-                        >
-                            SHOPVIA
-                        </Typography>
-                        <Search sx={{ bgcolor: alpha('#000', 0.05), '&:hover': { bgcolor: alpha('#000', 0.1) } }}>
+        <AppBar position="sticky" elevation={0} sx={{ bgcolor: 'white', color: 'text.primary', borderBottom: '1px solid', borderColor: '#f0f0f0', py: 0.5, top: 0, zIndex: 1100 }}>
+            <Container maxWidth="lg">
+                <Toolbar disableGutters sx={{ gap: { xs: 1, md: 4 } }}>
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="menu"
+                        sx={{ display: { md: 'none' } }}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+
+                    <Typography
+                        variant="h6"
+                        noWrap
+                        component="div"
+                        sx={{
+                            fontWeight: 900,
+                            fontSize: { xs: '1.2rem', md: '1.8rem' },
+                            color: 'black',
+                            cursor: 'pointer',
+                            fontFamily: 'var(--font-integral)',
+                            mr: { md: 2 }
+                        }}
+                    >
+                        Shopvia
+                    </Typography>
+
+                    <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: 3, flexShrink: 0 }}>
+                        <Link href="#" color="inherit" underline="none" sx={{ display: 'flex', alignItems: 'center', gap: 0.5, fontSize: '1rem' }}>
+                            Shop <KeyboardArrowDownIcon sx={{ fontSize: '1rem' }} />
+                        </Link>
+                        <Link href="#" color="inherit" underline="none" sx={{ fontSize: '1rem' }}>On Sale</Link>
+                        <Link href="#" color="inherit" underline="none" sx={{ fontSize: '1rem' }}>New Arrivals</Link>
+                        <Link href="#" color="inherit" underline="none" sx={{ fontSize: '1rem' }}>Brands</Link>
+                    </Box>
+
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'block' }, mx: 2 }}>
+                        <Search>
                             <SearchIconWrapper>
-                                <SearchIcon />
+                                <SearchIcon fontSize="small" />
                             </SearchIconWrapper>
                             <StyledInputBase
-                                placeholder="Search products..."
+                                placeholder="Search for products..."
                                 inputProps={{ 'aria-label': 'search' }}
-                                sx={{ color: 'text.primary' }}
                             />
                         </Search>
-                        <Box sx={{ flexGrow: 1 }} />
-                        <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: 2 }}>
-                            <Button color="inherit">Shop</Button>
-                            <Button color="inherit">Categories</Button>
-                            <Button color="inherit">Deals</Button>
-                            <IconButton size="large" aria-label="show cart items" color="inherit">
-                                <Badge badgeContent={2} color="primary">
-                                    <ShoppingCartIcon />
-                                </Badge>
-                            </IconButton>
-                            <IconButton
-                                size="large"
-                                edge="end"
-                                aria-label="account of current user"
-                                aria-controls={menuId}
-                                aria-haspopup="true"
-                                onClick={handleProfileMenuOpen}
-                                color="inherit"
-                            >
-                                <AccountCircle />
-                            </IconButton>
-                        </Box>
-                        <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-                            <IconButton
-                                size="large"
-                                aria-label="show more"
-                                aria-controls={mobileMenuId}
-                                aria-haspopup="true"
-                                onClick={handleMobileMenuOpen}
-                                color="inherit"
-                            >
-                                <MoreIcon />
-                            </IconButton>
-                        </Box>
-                    </Toolbar>
-                </Container>
-            </AppBar>
-            {renderMobileMenu}
-            {renderMenu}
-        </Box>
+                    </Box>
+
+                    <Stack direction="row" spacing={{ xs: 0.5, md: 1 }} alignItems="center" sx={{ flexShrink: 0 }}>
+                        <IconButton size="large" color="inherit" sx={{ display: { xs: 'flex', md: 'none' } }}>
+                            <SearchIcon />
+                        </IconButton>
+                        <IconButton size="large" color="inherit">
+                            <Badge badgeContent={2} color="primary" sx={{ '& .MuiBadge-badge': { bgcolor: 'black', color: 'white' } }}>
+                                <ShoppingCartOutlinedIcon />
+                            </Badge>
+                        </IconButton>
+                        <IconButton size="large" edge="end" color="inherit">
+                            <AccountCircleOutlinedIcon />
+                        </IconButton>
+                    </Stack>
+                </Toolbar>
+            </Container>
+        </AppBar>
     );
 }

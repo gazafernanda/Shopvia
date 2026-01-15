@@ -1,52 +1,100 @@
 'use client';
 import * as React from 'react';
-import { Grid, Box, Typography, Container, Tabs, Tab } from '@mui/material';
+import { Box, Typography, Container, Button, Divider, Grid } from '@mui/material';
 import ProductCard from './ProductCard';
 
-const products = [
-    { id: 1, name: 'Nordic Lounge Chair', price: 299.00, image: '/chair.png', category: 'Furniture', rating: 4.5 },
-    { id: 2, name: 'Aura Smart Speaker', price: 149.00, image: '/speaker.png', category: 'Electronics', rating: 4.8 },
-    { id: 3, name: 'Minimalist Side Table', price: 120.00, image: '/chair.png', category: 'Furniture', rating: 4.2 },
-    { id: 4, name: 'Wireless Noise Cancelling', price: 199.00, image: '/speaker.png', category: 'Electronics', rating: 4.7 },
-    { id: 5, name: 'Ergonomic Desk Chair', price: 350.00, image: '/chair.png', category: 'Furniture', rating: 4.9 },
-    { id: 6, name: 'Bluetooth Home Hub', price: 89.00, image: '/speaker.png', category: 'Electronics', rating: 4.4 },
-    { id: 7, name: 'Contemporary Lamp', price: 75.00, image: '/chair.png', category: 'Furniture', rating: 4.6 },
-    { id: 8, name: 'Portable Bass Box', price: 59.00, image: '/speaker.png', category: 'Electronics', rating: 4.3 },
+const newArrivals = [
+    { id: 1, name: 'T-shirt with Tape Details', price: 120, image: '/hero_models.png', rating: 4.5 },
+    { id: 2, name: 'Skinny Fit Jeans', price: 240, originalPrice: 260, discount: '-20%', image: '/hero_models.png', rating: 3.5 },
+    { id: 3, name: 'Checkered Shirt', price: 180, image: '/hero_models.png', rating: 4.5 },
+    { id: 4, name: 'Sleeve Striped T-shirt', price: 130, originalPrice: 160, discount: '-30%', image: '/hero_models.png', rating: 4.5 },
+];
+
+const topSelling = [
+    { id: 5, name: 'Vertical Striped Shirt', price: 212, originalPrice: 232, discount: '-20%', image: '/hero_models.png', rating: 5.0 },
+    { id: 6, name: 'Courage Graphic T-shirt', price: 145, image: '/hero_models.png', rating: 4.0 },
+    { id: 7, name: 'Loose Fit Bermuda Shorts', price: 80, image: '/hero_models.png', rating: 3.0 },
+    { id: 8, name: 'Faded Skinny Jeans', price: 210, image: '/hero_models.png', rating: 4.5 },
 ];
 
 export default function ProductList() {
-    const [value, setValue] = React.useState(0);
-
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-        setValue(newValue);
-    };
-
     return (
-        <Container maxWidth="lg" sx={{ py: 8 }}>
-            <Box sx={{ textAlign: 'center', mb: 6 }}>
-                <Typography variant="h3" sx={{ fontWeight: 800, mb: 2 }}>
-                    Popular Products
+        <Container maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }}>
+            {/* NEW ARRIVALS */}
+            <Box sx={{ mb: { xs: 8, md: 12 } }}>
+                <Typography
+                    variant="h2"
+                    sx={{
+                        textAlign: 'center',
+                        mb: { xs: 4, md: 8 },
+                        fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
+                        fontFamily: 'var(--font-integral)'
+                    }}
+                >
+                    NEW ARRIVALS
                 </Typography>
-                <Typography variant="body1" color="text.secondary" sx={{ maxWidth: '600px', mx: 'auto' }}>
-                    Explore our most loved items from the current season. Quality meets design in every piece.
-                </Typography>
+                <Grid container spacing={3}>
+                    {newArrivals.map((product) => (
+                        <Grid item key={product.id} xs={6} sm={6} md={3} sx={{ display: 'flex' }}>
+                            <ProductCard {...product} />
+                        </Grid>
+                    ))}
+                </Grid>
+                <Box sx={{ textAlign: 'center', mt: 6 }}>
+                    <Button
+                        variant="outlined"
+                        sx={{
+                            borderColor: 'rgba(0,0,0,0.1)',
+                            color: 'black',
+                            px: { xs: 4, md: 8 },
+                            py: 1.5,
+                            borderRadius: 62,
+                            '&:hover': { borderColor: 'black', bgcolor: 'transparent' }
+                        }}
+                    >
+                        View All
+                    </Button>
+                </Box>
             </Box>
 
-            <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 4, display: 'flex', justifyContent: 'center' }}>
-                <Tabs value={value} onChange={handleChange} aria-label="product categories">
-                    <Tab label="All Products" sx={{ fontWeight: 700 }} />
-                    <Tab label="Furniture" sx={{ fontWeight: 700 }} />
-                    <Tab label="Electronics" sx={{ fontWeight: 700 }} />
-                </Tabs>
-            </Box>
+            <Divider sx={{ mb: { xs: 8, md: 12 } }} />
 
-            <Grid container spacing={4}>
-                {products.map((product) => (
-                    <Grid item key={product.id} xs={12} sm={6} md={3}>
-                        <ProductCard {...product} />
-                    </Grid>
-                ))}
-            </Grid>
+            {/* TOP SELLING */}
+            <Box sx={{ mb: 4 }}>
+                <Typography
+                    variant="h2"
+                    sx={{
+                        textAlign: 'center',
+                        mb: { xs: 4, md: 8 },
+                        fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
+                        fontFamily: 'var(--font-integral)'
+                    }}
+                >
+                    TOP SELLING
+                </Typography>
+                <Grid container spacing={3}>
+                    {topSelling.map((product) => (
+                        <Grid item key={product.id} xs={6} sm={6} md={3} sx={{ display: 'flex' }}>
+                            <ProductCard {...product} />
+                        </Grid>
+                    ))}
+                </Grid>
+                <Box sx={{ textAlign: 'center', mt: 6 }}>
+                    <Button
+                        variant="outlined"
+                        sx={{
+                            borderColor: 'rgba(0,0,0,0.1)',
+                            color: 'black',
+                            px: { xs: 4, md: 8 },
+                            py: 1.5,
+                            borderRadius: 62,
+                            '&:hover': { borderColor: 'black', bgcolor: 'transparent' }
+                        }}
+                    >
+                        View All
+                    </Button>
+                </Box>
+            </Box>
         </Container>
     );
 }
