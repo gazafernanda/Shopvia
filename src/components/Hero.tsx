@@ -63,16 +63,7 @@ export default function Hero() {
                         alignItems: 'flex-end',
                         justifyContent: 'center'
                     }}>
-                        <Image
-                            src="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1976&auto=format&fit=crop"
-                            alt="Fashion models in streetwear"
-                            fill
-                            style={{
-                                objectFit: 'contain',
-                                objectPosition: 'bottom center',
-                            }}
-                            priority
-                        />
+
                     </Grid>
                 </Grid>
             </Container>
