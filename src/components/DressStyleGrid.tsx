@@ -3,10 +3,26 @@ import { Box, Container, Typography, Grid, Paper } from '@mui/material';
 import Image from 'next/image';
 
 const styles = [
-    { name: 'Casual', image: '/hero_models.png', col: { xs: 12, md: 4 } },
-    { name: 'Formal', image: '/hero_models.png', col: { xs: 12, md: 8 } },
-    { name: 'Party', image: '/hero_models.png', col: { xs: 12, md: 8 } },
-    { name: 'Gym', image: '/hero_models.png', col: { xs: 12, md: 4 } },
+    {
+        name: 'Casual',
+        image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=2000&auto=format&fit=crop',
+        col: { xs: 12, md: 4 }
+    },
+    {
+        name: 'Formal',
+        image: 'https://images.unsplash.com/photo-1594938298603-c8148c47e356?q=80&w=2000&auto=format&fit=crop',
+        col: { xs: 12, md: 8 }
+    },
+    {
+        name: 'Party',
+        image: 'https://images.unsplash.com/photo-1566737236500-c8ac43014a67?q=80&w=2000&auto=format&fit=crop',
+        col: { xs: 12, md: 8 }
+    },
+    {
+        name: 'Gym',
+        image: 'https://images.unsplash.com/photo-1483721310020-03333e577078?q=80&w=2000&auto=format&fit=crop',
+        col: { xs: 12, md: 4 }
+    },
 ];
 
 export default function DressStyleGrid() {
@@ -18,7 +34,8 @@ export default function DressStyleGrid() {
                     borderRadius: '40px',
                     px: { xs: 3, md: 8 },
                     py: { xs: 5, md: 10 },
-                    width: '100%'
+                    width: '100%',
+                    mx: 'auto'
                 }}
             >
                 <Typography
@@ -34,7 +51,7 @@ export default function DressStyleGrid() {
                     BROWSE BY DRESS STYLE
                 </Typography>
 
-                <Grid container spacing={3} sx={{ width: '100%', margin: 0 }}>
+                <Grid container spacing={3}>
                     {styles.map((style) => (
                         <Grid item key={style.name} xs={style.col.xs} md={style.col.md}>
                             <Paper
@@ -46,8 +63,8 @@ export default function DressStyleGrid() {
                                     overflow: 'hidden',
                                     cursor: 'pointer',
                                     bgcolor: '#ffffff',
-                                    width: '100%',
-                                    '&:hover img': { transform: 'scale(1.05)' }
+                                    '&:hover img': { transform: 'scale(1.05)' },
+                                    '&:hover .style-name': { transform: 'translateX(8px)' }
                                 }}
                             >
                                 <Image
@@ -55,10 +72,11 @@ export default function DressStyleGrid() {
                                     alt={style.name}
                                     fill
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                    style={{ objectFit: 'cover', transition: 'transform 0.3s ease-in-out' }}
+                                    style={{ objectFit: 'cover', transition: 'transform 0.4s ease-in-out' }}
                                 />
                                 <Typography
                                     variant="h5"
+                                    className="style-name"
                                     sx={{
                                         position: 'absolute',
                                         top: { xs: 16, md: 24 },
@@ -66,7 +84,8 @@ export default function DressStyleGrid() {
                                         fontWeight: 700,
                                         fontSize: { xs: '1.5rem', md: '2rem' },
                                         color: 'black',
-                                        zIndex: 2
+                                        zIndex: 2,
+                                        transition: 'transform 0.3s ease-in-out'
                                     }}
                                 >
                                     {style.name}

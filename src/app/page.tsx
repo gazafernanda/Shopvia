@@ -2,6 +2,7 @@ import TopBanner from "@/components/TopBanner";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import BrandBar from "@/components/BrandBar";
+import Features from "@/components/Features";
 import ProductList from "@/components/ProductList";
 import DressStyleGrid from "@/components/DressStyleGrid";
 import Testimonials from "@/components/Testimonials";
@@ -15,6 +16,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <BrandBar />
+      <Features />
       <ProductList />
       <DressStyleGrid />
       <Testimonials />

@@ -5,7 +5,17 @@ import Image from 'next/image';
 
 export default function Hero() {
     return (
-        <Box sx={{ bgcolor: '#F2F0F1', pt: { xs: 4, md: 0 }, overflow: 'hidden' }}>
+        <Box
+            sx={{
+                bgcolor: '#F2F0F1',
+                pt: { xs: 4, md: 0 },
+                overflow: 'hidden',
+                position: 'relative',
+                backgroundImage: 'linear-gradient(rgba(242, 240, 241, 0.85), rgba(242, 240, 241, 0.85)), url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2070&auto=format&fit=crop")',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+            }}
+        >
             <Container maxWidth="lg">
                 <Grid container alignItems="center">
                     <Grid item xs={12} md={6} sx={{ pt: { md: 8 }, pb: { xs: 4, md: 8 } }}>
@@ -46,15 +56,23 @@ export default function Hero() {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid item xs={12} md={6} sx={{ position: 'relative', height: { xs: '450px', md: '660px' }, mt: { xs: 2, md: 0 } }}>
+                    <Grid item xs={12} md={6} sx={{
+                        position: 'relative',
+                        height: { xs: '400px', sm: '500px', md: '660px' },
+                        display: 'flex',
+                        alignItems: 'flex-end',
+                        justifyContent: 'center'
+                    }}>
                         <Image
-                            src="/hero_models.png"
-                            alt="Models wearing Shopvia clothes"
+                            src="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1976&auto=format&fit=crop"
+                            alt="Fashion models in streetwear"
                             fill
-                            style={{ objectFit: 'cover', objectPosition: 'top' }}
+                            style={{
+                                objectFit: 'contain',
+                                objectPosition: 'bottom center',
+                            }}
                             priority
                         />
-                        {/* Small stars decorations can be added here as icons if needed */}
                     </Grid>
                 </Grid>
             </Container>

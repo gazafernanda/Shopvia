@@ -49,11 +49,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: 'inherit',
     width: '100%',
     '& .MuiInputBase-input': {
-        padding: theme.spacing(1.2, 1, 1.2, 0),
+        padding: theme.spacing(1.8, 1, 1.8, 0),
         paddingLeft: `calc(1em + ${theme.spacing(4)})`,
         transition: theme.transitions.create('width'),
         width: '100%',
-        fontSize: '0.9rem',
+        fontSize: '1rem',
     },
 }));
 

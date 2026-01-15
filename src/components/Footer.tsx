@@ -32,19 +32,20 @@ export default function Footer() {
                         <TextField
                             placeholder="Enter your email address"
                             fullWidth
-                            size="small"
                             sx={{
                                 bgcolor: 'white',
                                 borderRadius: 62,
                                 '& .MuiOutlinedInput-root': {
                                     borderRadius: 62,
-                                    '& fieldset': { border: 'none' }
+                                    px: 1,
+                                    '& fieldset': { border: 'none' },
+                                    '& input': { py: 2, fontSize: '1rem' }
                                 }
                             }}
                             InputProps={{
                                 startAdornment: (
                                     <InputAdornment position="start">
-                                        <MailOutlineIcon sx={{ color: 'rgba(0,0,0,0.4)', ml: 1 }} />
+                                        <MailOutlineIcon sx={{ color: 'rgba(0,0,0,0.4)', ml: 2, fontSize: '1.5rem' }} />
                                     </InputAdornment>
                                 ),
                             }}
@@ -57,7 +58,8 @@ export default function Footer() {
                                 color: 'black',
                                 borderRadius: 62,
                                 fontWeight: 700,
-                                py: 1.2,
+                                py: 1.8,
+                                fontSize: '1rem',
                                 '&:hover': { bgcolor: 'rgba(255,255,255,0.9)' }
                             }}
                         >

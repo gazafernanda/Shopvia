@@ -39,7 +39,7 @@ export default function Testimonials() {
 
     const scroll = (direction: 'left' | 'right') => {
         if (scrollRef.current) {
-            const itemWidth = 400; // Approximate width of a card + gap
+            const itemWidth = 400 + 24; // Card width + gap
             const scrollAmount = direction === 'left' ? -itemWidth : itemWidth;
             scrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
         }
@@ -82,18 +82,15 @@ export default function Testimonials() {
                         scrollSnapType: 'x mandatory',
                         '&::-webkit-scrollbar': { display: 'none' },
                         scrollbarWidth: 'none',
-                        maskImage: 'linear-gradient(to right, black 80%, transparent 100%)',
-                        WebkitMaskImage: 'linear-gradient(to right, black 80%, transparent 100%)'
                     }}
                 >
                     {reviews.map((review, index) => (
                         <Box
                             key={index}
                             sx={{
-                                minWidth: { xs: '300px', md: '400px' },
-                                maxWidth: '100%',
+                                width: { xs: '280px', md: '400px' },
+                                flex: '0 0 auto',
                                 scrollSnapAlign: 'start',
-                                flexShrink: 0
                             }}
                         >
                             <Paper
