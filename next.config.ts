@@ -2,7 +2,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: 'export',
-  basePath: '/Shopvia',
   images: {
     unoptimized: true,
     remotePatterns: [
@@ -15,6 +14,8 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  // @ts-ignore
+  allowedDevOrigins: ['192.168.1.11'],
 };
 
 export default nextConfig;
